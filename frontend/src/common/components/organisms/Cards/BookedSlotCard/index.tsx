@@ -9,7 +9,7 @@ import { RoundIcon } from "@atoms"
 //Extarnal imports
 import Typography from '@mui/material/Typography'
 import { TrashIcon } from '@heroicons/react/24/solid'
-import Box from '@mui/material/Box';
+import Box from '@mui/material/Box'
 
 type BookedSlotTypes = {
     data: any,

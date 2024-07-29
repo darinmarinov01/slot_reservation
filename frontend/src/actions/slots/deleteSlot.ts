@@ -13,13 +13,13 @@ export const deleteSlot = async (data: SlotProperties): Promise<SlotProperties |
     
     try {
         // Delete slot
-        const slotDoc = doc(db, "slots", data.id);
-        await deleteDoc(slotDoc);
+        const slotDoc = doc(db, "slots", data.id)
+        await deleteDoc(slotDoc)
 
-        return data;
+        return data
     } catch (error) {
-        const errorMessage = (error as Error).message;
-        console.error("Error deleting slot: ", errorMessage);
-        return { message: errorMessage };
+        const errorMessage = (error as Error).message
+        console.error("Error deleting slot: ", errorMessage)
+        return { message: errorMessage }
     }
-};
+}

@@ -4,7 +4,7 @@ import { db } from '@/firebase/firebase-config'
 import { addDoc, collection, Timestamp } from "firebase/firestore"
 // Internal imports
 import { ApiError } from '@/common/types/slots-types'
-import { FirebaseError } from '@/common/types/firebase-errors';
+import { FirebaseError } from '@/common/types/firebase-errors'
 
 // Function to create a new slot
 export const createError = async (data: FirebaseError): Promise<FirebaseError | ApiError> => {
@@ -17,7 +17,7 @@ export const createError = async (data: FirebaseError): Promise<FirebaseError | 
         await addDoc(collection(db, 'errors'), {
             code: data.code,
             message: data.message,
-            user: data?.user || 'unknown',
+            user: (data as any).user || 'unknown',
             dateCreated: Timestamp.fromDate(new Date()),
           })
 

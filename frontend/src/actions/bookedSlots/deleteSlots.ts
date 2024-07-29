@@ -24,15 +24,15 @@ export const deleteSlots = async (data: BookedSlots): Promise<BookedSlots[] | Ap
         // Delete booked slots
         querySnapshot.forEach(async (document) => {
             if (document.exists()) {
-                const slotDoc = doc(db, "bookedSlots", document.id);
-                await deleteDoc(slotDoc);
+                const slotDoc = doc(db, "bookedSlots", document.id)
+                await deleteDoc(slotDoc)
             }
         })
 
         return [data]
     } catch (error) {
-        const errorMessage = (error as Error).message;
-        console.error("Error deleting booked slot: ", errorMessage);
-        return { message: errorMessage };
+        const errorMessage = (error as Error).message
+        console.error("Error deleting booked slot: ", errorMessage)
+        return { message: errorMessage }
     }
-};
+}

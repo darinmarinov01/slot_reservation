@@ -9,23 +9,23 @@ import { User } from '@/common/types/user-types'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<User | ApiError | null>) {
-    const data: User | null = req.body;
+    const data: User | null = req.body
 
     if (!data || !data.id) {
-        res.status(400).json({ message: "Missing or invalid data" });
-        return;
+        res.status(400).json({ message: "Missing or invalid data" })
+        return
     }
 
     try {
-        const result = await deleteUser(data);
+        const result = await deleteUser(data)
 
         if ('message' in result) {
-            res.status(409).json(result);
+            res.status(409).json(result)
         } else {
-            res.status(200).json(result); // 200 OK is more appropriate than 201 Created for a DELETE operation
+            res.status(200).json(result) // 200 OK is more appropriate than 201 Created for a DELETE operation
         }
     } catch (error) {
-        const apiError: ApiError = { message: (error as Error).message };
-        res.status(500).json(apiError);
+        const apiError: ApiError = { message: (error as Error).message }
+        res.status(500).json(apiError)
     }
 }

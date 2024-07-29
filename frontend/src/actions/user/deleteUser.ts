@@ -14,17 +14,17 @@ export const deleteUser = async (data: User): Promise<User | ApiError> => {
     
     try {
         // Delete user from database
-        const userDocRef = doc(db, "users", data.id);
+        const userDocRef = doc(db, "users", data.id)
 
         await updateDoc(userDocRef, {
             isDeleted: true
         })
         
         console.log('User deleted successfully', data)
-        return data;
+        return data
     } catch (error) {
-        const errorMessage = (error as Error).message;
-        console.error("Error deleting user: ", errorMessage);
-        return { message: errorMessage };
+        const errorMessage = (error as Error).message
+        console.error("Error deleting user: ", errorMessage)
+        return { message: errorMessage }
     }
-};
+}

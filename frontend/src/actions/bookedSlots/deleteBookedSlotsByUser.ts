@@ -4,7 +4,7 @@ import { db } from '@/firebase/firebase-config'
 import { doc, deleteDoc, query, collection, where, getDocs } from "firebase/firestore"
 // Internal imports
 import { BookedSlots, ApiError } from '@/common/types/slots-types'
-import { User } from '@/common/types/user-types';
+import { User } from '@/common/types/user-types'
 
 // Function to delete a bookeds slots
 export const deleteBookedSlotsByUser = async (data: User): Promise<BookedSlots[] | ApiError> => {
@@ -25,15 +25,15 @@ export const deleteBookedSlotsByUser = async (data: User): Promise<BookedSlots[]
         // Delete booked slots
         querySnapshot.forEach(async (document) => {
             if (document.exists()) {
-                const slotDoc = doc(db, "bookedSlots", document.id);
-                await deleteDoc(slotDoc);
+                const slotDoc = doc(db, "bookedSlots", document.id)
+                await deleteDoc(slotDoc)
             }
         })
 
         return []
     } catch (error) {
-        const errorMessage = (error as Error).message;
-        console.error("Error deleting booked slot: ", errorMessage);
-        return { message: errorMessage };
+        const errorMessage = (error as Error).message
+        console.error("Error deleting booked slot: ", errorMessage)
+        return { message: errorMessage }
     }
-};
+}

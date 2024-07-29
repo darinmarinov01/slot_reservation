@@ -12,12 +12,12 @@ export enum RoleEnum {
 }
 
 export interface LoginType {
-	email: string;
-	password: string;
+	email: string
+	password: string
 }
 
 export interface RegistrationType extends LoginType {
-	name: string;
+	name: string
 	loginType: LoginEnum,
 	role: RoleEnum,
 	isDeleted: boolean,

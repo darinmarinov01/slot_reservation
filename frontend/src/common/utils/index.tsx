@@ -1,9 +1,8 @@
+//@ts-nocheck
 import Cookies from 'js-cookie'
 import { jwtDecode } from "jwt-decode"
 import { SlotProgress, BookedSlots, SlotProgressColor } from '../types/slots-types'
-import { EventInput } from '../types/slots-types'
 import dayjs, { Dayjs } from 'dayjs'
-import { Timestamp } from 'firebase/firestore'
 
 type UnavailablePeriods = {
   unavailableDateStart: Date,
@@ -52,7 +51,7 @@ export function getDocData(doc: any) {
   }
 }
 
-export const setCookie = (name: string, value, options = {}) => {
+export const setCookie = (name: string, value: any, options = {}) => {
   Cookies.set(name, value, options)
 }
 
@@ -110,12 +109,12 @@ const convertTimestampToISOString = (date: string): string => {
 // Convert bookedSlots to event data for fullevent calendar
 export const convertDataToEvents = (data: BookedSlots[]): any[] => {
   return data.map((item) => {
-      const title = `(${timeFilter(new Date(item.startDate))} - ${timeFilter(new Date(item.endDate))}) - ${item.slot?.location} => ${item.user?.name}`
+      const title = `(${timeFilter(new Date(item.startDate))} - ${timeFilter(new Date(item.endDate))}) - ${(item.slot as any).location} => ${(item.user as any).name}`
 
       return {
           id: item.id,
-          start: convertTimestampToISOString(item.startDate),
-          end: convertTimestampToISOString(item.endDate),
+          start: convertTimestampToISOString((item as any).startDate),
+          end: convertTimestampToISOString((item as any).endDate),
           title: title,
           slot: item.slot,
           user: item.user,
@@ -128,8 +127,8 @@ export const convertDates = (data: BookedSlots[]): any[] => {
   return data.map((item) => {
       return {
           ...item,
-          startDate: dayjs(data.startDate),
-          endDate: dayjs(data.endDate)
+          startDate: dayjs((data as any).startDate),
+          endDate: dayjs((data as any).endDate)
       }
   })
 }

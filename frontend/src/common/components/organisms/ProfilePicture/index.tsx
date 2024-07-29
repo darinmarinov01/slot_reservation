@@ -4,7 +4,7 @@
 import React, { useState, ChangeEvent } from 'react'
 // Firebase imports
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
-import { User } from 'firebase/auth';
+import { User } from 'firebase/auth'
 // External Imports
 import { Avatar, Box, Button, Typography } from '@mui/material'
 // Internal Imports
@@ -24,7 +24,7 @@ const ProfilePicture = ({ currentUser, setCurrentPhotoUrl }: ProfilePictureProps
     const [photoUrl, setPhotoUrl] = useState(loggedUser?.photoUrl || null)
 
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const file = e.target?.files[0]
+        const file = (e.target as any).files[0]
         setInputFile(file)
     }
 

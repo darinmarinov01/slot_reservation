@@ -12,9 +12,9 @@ import { User } from '@/common/types/user-types'
 export default async function handler(req: NextApiRequest, res: NextApiResponse<User[] | ApiError | null>) {
     // Validate request method
     if (req.method !== 'GET') {
-        res.setHeader('Allow', ['GET']);
-        res.status(405).json({ message: `Method ${req.method} not allowed` });
-        return;
+        res.setHeader('Allow', ['GET'])
+        res.status(405).json({ message: `Method ${req.method} not allowed` })
+        return
     }
 
     try {

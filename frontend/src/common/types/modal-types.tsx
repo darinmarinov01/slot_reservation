@@ -1,6 +1,6 @@
 export type ModalTypes = {
-    children: React.ReactNode;
-    onClose?: () => void;
+    children: React.ReactNode
+    onClose?: () => void
     onConfirm?: () => void,
     onScroll?: () => void,
 }

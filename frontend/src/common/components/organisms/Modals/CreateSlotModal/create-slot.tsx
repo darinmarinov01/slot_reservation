@@ -20,7 +20,7 @@ type Props = {
 
 const CreateSlotModal: React.FC<Props> = ({ onClose, onConfirm }) => {
     const { setAlert } = useAlert()
-    const slotTypesArray = Object.values(SlotTypesEnum);
+    const slotTypesArray = Object.values(SlotTypesEnum)
     const [location, setLocation] = useState<string>('')
     const [description, setDescription] = useState<string>('')
     const [type, setType] = useState<SlotTypesEnum>(SlotTypesEnum.CAR)
@@ -101,7 +101,7 @@ const CreateSlotModal: React.FC<Props> = ({ onClose, onConfirm }) => {
                         labelId="type-label"
                         id="type"
                         value={type}
-                        onChange={handleSelectChange}
+                        onChange={(e) => handleSelectChange}
                     >
                         {slotTypesArray.map((type, index) => (
                             <MenuItem key={index} value={type}>{type}</MenuItem>

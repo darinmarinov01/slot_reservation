@@ -1,10 +1,10 @@
 import { Navbar, Footer } from '@organisms'
 import { RouteGuard } from '../RouteGuard/RouteGuard'
 import Box from '@mui/material/Box'
-import { ReactNode } from 'react';
+import { ReactNode } from 'react'
 
 interface PageLayout {
-    children: ReactNode;
+    children: ReactNode
 }
 
 // TODO: find proper type of children

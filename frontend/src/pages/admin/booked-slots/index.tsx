@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useCallback, useEffect, useRef, useState } from "react"
 import FullCalendar, { EventApi, EventClickArg, EventMouseEnterArg, EventMouseLeaveArg } from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"

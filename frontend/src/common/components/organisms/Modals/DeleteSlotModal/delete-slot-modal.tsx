@@ -8,10 +8,10 @@ import { useAlert } from "@/providers/alert"
 import { headers } from '@/common/constants'
 //External imports
 import { SelectChangeEvent, Box, Typography } from "@mui/material"
-import { BookedSlots } from '@/common/types/slots-types'
+import { BookedSlots, SlotProperties } from '@/common/types/slots-types'
 
 type Props = {
-    data?: BookedSlots
+    data?: BookedSlots | SlotProperties
     isBookedSlot: boolean
     onClose: () => void
     onConfirm?: () => void

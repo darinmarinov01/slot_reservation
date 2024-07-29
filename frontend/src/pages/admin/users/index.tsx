@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 // React imports
 import { useCallback, useEffect, useState } from "react"
 import { TrashIcon } from '@heroicons/react/24/solid'

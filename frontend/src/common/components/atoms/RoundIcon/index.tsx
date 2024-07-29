@@ -10,7 +10,7 @@ type Props = {
     width?: string,
     height?: string,
     iconFillColor?: string,
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+    onClick?: (event: React.MouseEvent<any>) => void
 }
 
 const RoundIcon = ({
@@ -20,7 +20,7 @@ const RoundIcon = ({
     width = '30px',
     height = '30px',
     iconFillColor = '',
-    onClick = () => { }
+    onClick = () => {}
 }: Props) => {
 
     const hoverIconColor = (color: string) => {
@@ -32,7 +32,7 @@ const RoundIcon = ({
     }
 
     return <>
-        <Box onClick={(e: React.MouseEvent) => onClick(e)} className={`flex flex-col items-center ${additionalCss}`}>
+        <Box onClick={(e: any) => onClick(e)} className={`flex flex-col items-center ${additionalCss}`}>
             <Box className={`rounded-full flex items-center justify-center`}>
                 <Box sx={{
                     "& svg": {

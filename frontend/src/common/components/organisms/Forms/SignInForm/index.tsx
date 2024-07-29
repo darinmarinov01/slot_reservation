@@ -20,8 +20,8 @@ import { useAlert } from "@/providers/alert"
 import Fingerprint from '@mui/icons-material/Fingerprint'
 import { Typography } from '@mui/material'
 import GoogleIcon from '@mui/icons-material/Google'
-import Box from '@mui/material/Box';
-import FormLabel from '@mui/material/FormLabel';
+import Box from '@mui/material/Box'
+import FormLabel from '@mui/material/FormLabel'
 
 const SignInForm = () => {
     const { setAlert } = useAlert()
@@ -52,15 +52,15 @@ const SignInForm = () => {
                     const user = await response.json() 
 
                     if(user.isDeleted) {
-                        setAlert('','You are not allowed to login', 'warning');
+                        setAlert('','You are not allowed to login', 'warning')
                     } else {
-                        setAlert('',`Welcome ${data.email}`, 'info');
+                        setAlert('',`Welcome ${data.email}`, 'info')
                     }
 
                     router.push('/home')
                 } else {
                     router.push('/home')
-                    setAlert('', `There is some problem with your credentials.`, 'error');
+                    setAlert('', `There is some problem with your credentials.`, 'error')
                 }
             })
             .catch((error: FirebaseError) => alert(error.message))

@@ -10,8 +10,8 @@ import Link from 'next/link'
 import { RoundIcon } from "@atoms"
 
 type Tabs = {
-  icon: string
-  name: string
+  name: string;
+  icon: React.ForwardRefExoticComponent<React.SVGProps<SVGSVGElement> & { title?: string; titleId?: string }>;
 }
 
 type Props = {

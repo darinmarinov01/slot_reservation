@@ -13,13 +13,13 @@ export const deleteSlot = async (data: BookedSlots): Promise<BookedSlots | ApiEr
     
     try {
         // Delete slot
-        const slotDoc = doc(db, "bookedSlots", data.id);
-        await deleteDoc(slotDoc);
+        const slotDoc = doc(db, "bookedSlots", data.id)
+        await deleteDoc(slotDoc)
 
-        return data;
+        return data
     } catch (error) {
-        const errorMessage = (error as Error).message;
-        console.error("Error deleting booked slot: ", errorMessage);
-        return { message: errorMessage };
+        const errorMessage = (error as Error).message
+        console.error("Error deleting booked slot: ", errorMessage)
+        return { message: errorMessage }
     }
-};
+}

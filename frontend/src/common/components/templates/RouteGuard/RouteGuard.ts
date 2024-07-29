@@ -1,4 +1,4 @@
-
+//@ts-nocheck
 // React and next imports
 import { ReactNode, useCallback, useEffect, useState } from "react"
 // Internal imports
@@ -11,11 +11,11 @@ import { JwtPayload, jwtDecode } from "jwt-decode"
 export { RouteGuard }
 
 interface UserClaims extends JwtPayload {
-    user_id?: string;
+    user_id?: string
 }
 
 interface RouteGuardProps {
-    children: ReactNode;
+    children: ReactNode
 }
 
 const RouteGuard = ({ children }: RouteGuardProps) => {

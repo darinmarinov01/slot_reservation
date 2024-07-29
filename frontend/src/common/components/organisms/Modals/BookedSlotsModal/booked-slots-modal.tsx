@@ -60,7 +60,7 @@ const BookedSlotsModal = ({ data, onClose, onConfirm }: Props) => {
     }, [data?.id])
 
     const fetchBookedSlots = useCallback(async () => {
-        if (!slot?.id) return;
+        if (!slot?.id) return
 
         const response = await fetch('/api/bookedSlots/getAllSlots', {
             headers: headers,
@@ -69,7 +69,7 @@ const BookedSlotsModal = ({ data, onClose, onConfirm }: Props) => {
 
         if (response.ok) {
             const bookedSlots = await response.json()
-            const filteredSlotsById = bookedSlots?.filter((sl: BookedSlots) => sl?.slot?.id == slot.id) || []
+            const filteredSlotsById = bookedSlots?.filter((sl: BookedSlots) => (sl?.slot as any).id == slot.id) || []
             const filteredSlotsByDate = filteredSlotsById.filter((sl: BookedSlots) => dayjs(sl?.endDate) > today) || []
             const mappedSlots = filteredSlotsByDate.map((slot: BookedSlots) => ({ ...slot, startDate: new Date(slot.startDate), endDate: new Date(slot.endDate) }))
             setSlotDates(mappedSlots)
@@ -144,7 +144,7 @@ const BookedSlotsModal = ({ data, onClose, onConfirm }: Props) => {
             const unsubscribe = onSnapshot(q, (querySnapshot) => {
                 if (querySnapshot.empty) {
                     setAvailable(false)
-                    
+
                     if (!startDate && !endDate) {
                         setDisabled(true)
                     }
@@ -225,14 +225,14 @@ const BookedSlotsModal = ({ data, onClose, onConfirm }: Props) => {
                         >
                             Appointment start and end date
                         </FormLabel>
-                        <DateTimeRangePicker 
+                        <DateTimeRangePicker
                             dates={{ startDate: slotDates[0], endDate: slotDates[slotDates.length - 1] }}
-                            notAvailable={available} 
-                            onChangeStartDate={onHandleStartDate} 
-                            onChangeEndDate={onHandleEndDate} 
+                            notAvailable={available}
+                            onChangeStartDate={onHandleStartDate}
+                            onChangeEndDate={onHandleEndDate}
                             isNewSlot={true}
                             isOnlyPreiview={false}
-                          />
+                        />
                     </Box>
                     <Box className="text-white">
                         <FormLabel

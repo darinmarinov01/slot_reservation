@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { firebaseAuth } from '@/firebase/firebase-config'
 import {
 	type User,

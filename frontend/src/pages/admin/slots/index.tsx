@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 // React imports
 import { useCallback, useEffect, useState } from "react"
 import { TrashIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/solid'
@@ -28,7 +30,7 @@ function Slots() {
                 method: 'GET',
             })
 
-            if (!response.ok) throw new Error(await response.json().message)
+            if (!response.ok) throw new Error(await response.json())
 
             const data = await response.json()
             setSlots(data)

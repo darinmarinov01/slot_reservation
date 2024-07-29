@@ -11,8 +11,8 @@ import { NextApiRequest, NextApiResponse } from 'next'
 export default async function handler(req: NextApiRequest, res: NextApiResponse<BookedSlots[] | ApiError | null>) {
     const { user }: { user: User } = req.body
     if (!user) {
-        res.status(400).json({ message: "User is required" });
-        return;
+        res.status(400).json({ message: "User is required" })
+        return
     }
 
     try {

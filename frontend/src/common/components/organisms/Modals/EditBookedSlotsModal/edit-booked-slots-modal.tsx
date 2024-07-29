@@ -171,7 +171,7 @@ const EditBookedSlotsModal = ({ data, onClose, onConfirm, isOnlyRead }: Props) =
                                 label="Slots"
                                 placeholder='Selected slot'
                             >
-                                <MenuItem value={slot}>{slot.location}</MenuItem>
+                                <MenuItem>{slot.location}</MenuItem>
                             </Select>
                         </Box>
                     )}

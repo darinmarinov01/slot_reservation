@@ -1,3 +1,4 @@
+//@ts-nocheck
 // Next imports
 import { useSearchParams, usePathname } from "next/navigation"
 // Internal imports

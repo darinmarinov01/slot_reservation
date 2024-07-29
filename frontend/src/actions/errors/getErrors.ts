@@ -1,5 +1,5 @@
 // Internal imports 
-import { FirebaseErrorMessageWithId } from '@/common/types/firebase-errors';
+import { FirebaseErrorMessageWithId } from '@/common/types/firebase-errors'
 // Firebase imports
 import { db } from '@/firebase/firebase-config'
 import { collection, getDocs } from "firebase/firestore"

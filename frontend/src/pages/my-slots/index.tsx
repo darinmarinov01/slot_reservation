@@ -31,7 +31,7 @@ const MySlots = () => {
   const [upcomingSlots, setUpcomingSlots] = useState<BookedSlots[]>([])
   const [todaySlots, setTodaySlots] = useState<BookedSlots[]>([])
   const [pastSlots, setPastSlots] = useState<BookedSlots[]>([])
-  const [slot, setSlot] = useState<SlotProperties>()
+  const [slot, setSlot] = useState<SlotProperties | BookedSlots>()
   const [activeTab, setActiveTab] = useState(0)
   const [showModal, setShowModal] = useState<boolean>(false)
   const [showBookedModal, setShowBookedModal] = useState<boolean>(false)
@@ -95,7 +95,7 @@ const MySlots = () => {
     }
   }, [])
 
-  const handlerModal = (slot: SlotProperties) => {
+  const handlerModal = (slot: SlotProperties | BookedSlots) => {
     setSlot(slot)
     setShowModal(true)
   }
@@ -134,7 +134,7 @@ const MySlots = () => {
 
   const findNonExistentSlots = (arr1: SlotProperties[], arr2: SlotProperties[]): SlotProperties[] => {
     const carSlotsIds = arr2.map(slot => slot.id)
-    return arr1.filter(slot => !carSlotsIds.includes(slot.id));
+    return arr1.filter(slot => !carSlotsIds.includes(slot.id))
   }
 
   useEffect(() => {
@@ -154,10 +154,10 @@ const MySlots = () => {
       </Head>
       <section className="bg-gray-50 dark:bg-gray-900">
         {showModal && <EditBookedSlotsModal data={slot} onClose={hideModal} onConfirm={save} />}
-        {showDeleteModal && <DeleteSlotModal data={slot} isBookedSlot={true} onClose={hideModal} onConfirm={save} />}
+        {showDeleteModal && slot && <DeleteSlotModal data={slot} isBookedSlot={true} onClose={hideModal} onConfirm={save} />}
         {showBookedModal && user && <BookedSlotsModal data={slot} onClose={hideModal} onConfirm={save} />}
 
-        <TabNav tabs={tabs} onTabChange={tabChangeHandler} activeTab={activeTab} />
+        <TabNav tabs={tabs} onTabChange={tabChangeHandler} activeTab={activeTab} /> 
 
         {activeTab == 0 && <>
           {upcomingSlots && <Box className="mx-auto max-w-2xl px-4 py-6 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">

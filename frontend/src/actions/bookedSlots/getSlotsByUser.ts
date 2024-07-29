@@ -8,20 +8,21 @@ import { db } from '@/firebase/firebase-config'
 import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore"
 
 // Function to get slots
-export const getAllSlotsByUser = async (user: User): Promise<BookedSlots[] | null> => {
-    if (!user || !user.id) {
+export const getAllSlotsByUser = async (user: User): Promise<BookedSlots[]> => {
+    if (!user || !user.id || !user.email) {
         throw new Error("Invalid input data")
     }
 
-    const userDocRef = query(collection(db, 'users'), where('email', '==', user?.email))
-    const userDoc = await getDocs(userDocRef)
+    const userDocRef = query(collection(db, 'users'), where('email', '==', user.email))
+    const userDocs = await getDocs(userDocRef)
 
-    if (userDoc.empty) {
+    if (userDocs.empty) {
         throw new Error('User not found')
     }
 
-    const q = query(collection(db, "bookedSlots"), where("user", "==", doc(db, 'users', userDoc.docs[0].id)))
-    const querySnapshot = await getDocs(q)
+    const userId = userDocs.docs[0].id
+    const slotsQuery = query(collection(db, "bookedSlots"), where("user", "==", doc(db, 'users', userId)))
+    const querySnapshot = await getDocs(slotsQuery)
 
     if (querySnapshot.empty) {
         console.log("No documents found!")
@@ -30,14 +31,14 @@ export const getAllSlotsByUser = async (user: User): Promise<BookedSlots[] | nul
 
     try {
         const data = await Promise.all(querySnapshot.docs.map(async (document) => {
-            const slot = await getDoc(document.data().slot)
-            const user = await getDoc(document.data().user)
+            const slotDoc = await getDoc(document.data().slot)
+            const userDoc = await getDoc(document.data().user)
 
-            if (slot.exists() && user.exists()) {
+            if (slotDoc.exists() && userDoc.exists()) {
                 const docData: BookedSlots = {
                     id: document.id,
-                    user: getDocData(user),
-                    slot: getDocData(slot),
+                    user: getDocData(userDoc),
+                    slot: getDocData(slotDoc),
                     startDate: document.data().startDate.toDate(),
                     endDate: document.data().endDate.toDate(),
                     description: document.data().description
@@ -48,9 +49,10 @@ export const getAllSlotsByUser = async (user: User): Promise<BookedSlots[] | nul
             return null
         }))
 
-        return data
+        // Filter out null values
+        return data.filter((slot): slot is BookedSlots => slot !== null)
     } catch (error) {
         console.error("Error getting documents: ", error)
-        throw new Error(`Failed to retrieve bookdeSlots by user: ${(error as Error).message}`)
+        throw new Error(`Failed to retrieve bookedSlots by user: ${(error as Error).message}`)
     }
 }

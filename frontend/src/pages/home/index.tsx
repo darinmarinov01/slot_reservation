@@ -79,7 +79,7 @@ const Home = () => {
 
   const findNonExistentSlots = (arr1: SlotProperties[], arr2: SlotProperties[]): SlotProperties[] => {
     const carSlotsIds = arr2.map(slot => slot.id)
-    return arr1.filter(slot => !carSlotsIds.includes(slot.id));
+    return arr1.filter(slot => !carSlotsIds.includes(slot.id))
   }
 
   const hideModal = () => {

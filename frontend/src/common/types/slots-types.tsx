@@ -43,12 +43,12 @@ export interface BookedSlotsWithProgress extends BookedSlots {
 }
 
 export interface EventInput {
-  id?: string;
-  resourceId?: string;
-  start: string;
-  end: string;
-  title: string;
-  color?: string;
+  id?: string
+  resourceId?: string
+  start: string
+  end: string
+  title: string
+  color?: string
 }
 
 export type ApiError = {

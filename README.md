@@ -1,18 +1,66 @@
-# Parking System
+# Slot Reservation System Documentation
 
+This documentation describes the data schema for a Slot Reservation System implemented using Firebase and Next.js. The system includes four main tables: `users`, `slots`, `errors`, and `bookedSlots`.
 
-## Initial Database design
+## Tables and Their Properties
 
-![alt text](db_design.png)
+### 1. Users
 
-## Assumptions
-- A slot can be of different types: parking, working, etc.
-- Slot “free“ would be a derived value rather than a table column – based on its slot__slot_booking relation. If for a specific slot X there is a SlotBooking Y and today date Z.
-Then if  Y.from <= Z <= Y.to  X.free is false – the slot is occupied.
-    * Alternative solution: To have the user first choose the timeframe when they need to book a slot, and based on the time selection all slots which are  available during the given timeframe to be shown on the page.   
-- A SlotBooking can have only 1 Slot relation, but a Slot, can have many SlotBooking’s
-- SlotBooking represent a booking of the space, regardless of the time. Not only can be used to check if a specific slot is free, but also to book a slot further in time, to check if a slot is free/occupied on a specific date and for analytics.
-- A slot can be booked – from/to dateTime in DB.
-- License plate - optional
-- License plate to be a table on its own 1:1 to User and optional to SlotBooking
-- Booking of an already occupied slot can be limited from both – FE and BE. 
+The `users` table stores information about the users of the system. Each user has the following properties:
+
+| Field           | Type                     | Description                                                                 |
+|-----------------|--------------------------|-----------------------------------------------------------------------------|
+| id              | string (optional)        | Unique identifier for the user.                                             |
+| email           | string                   | Email address of the user.                                                  |
+| name            | string                   | Name of the user.                                                           |
+| password        | string                   | Hashed password of the user.                                                |
+| photoUrl        | string                   | URL of the user's profile photo.                                            |
+| isDeleted       | boolean                  | Flag indicating whether the user is deleted.                                |
+| role            | RoleEnum                 | Role of the user in the system (e.g., admin, user).                         |
+| favoriteSlots   | SlotProperties[]         | Array of favorite slots for the user.                                       |
+| dateCreated     | Date                     | Date when the user was created.                                             |
+| accessToken     | string (optional)        | Access token for authentication.                                            |
+| provider        | LoginProviderType (optional) | Provider used for login (e.g., Google, Facebook).                         |
+
+### 2. Slots
+
+The `slots` table stores information about the available slots. Each slot has the following properties:
+
+| Field        | Type            | Description                                          |
+|--------------|-----------------|------------------------------------------------------|
+| id           | string (optional)| Unique identifier for the slot.                     |
+| location     | string          | Location of the slot.                                |
+| description  | string (optional)| Description of the slot.                            |
+| type         | SlotTypesEnum   | Type of the slot (e.g., meeting room, workspace).    |
+| dateCreated  | Date (optional) | Date when the slot was created.                      |
+
+### 3. BookedSlots
+
+The `bookedSlots` table stores information about the booked slots. Each booked slot has the following properties:
+
+| Field        | Type            | Description                                                                 |
+|--------------|-----------------|-----------------------------------------------------------------------------|
+| id           | string (optional)| Unique identifier for the booked slot.                                      |
+| startDate    | Date            | Start date and time of the booking.                                          |
+| endDate      | Date            | End date and time of the booking.                                            |
+| user         | string          | User ID of the person who booked the slot.                                   |
+| slot         | string          | Slot ID of the booked slot.                                                  |
+| description  | string (optional)| Description of the booking.                                                  |
+
+### 4. Errors
+
+The `errors` table stores information about errors that occur in the system. Each error has the following properties:
+
+| Field        | Type            | Description                                                                  |
+|--------------|-----------------|------------------------------------------------------------------------------|
+| code         | string          | Error code indicating the type of error.                                      |
+| message      | string          | Detailed error message.                                                      |
+| user         | string          | User ID associated with the error, or 'unknown' if not applicable.            |
+| dateCreated  | Date            | Date and time when the error occurred.                                        |
+
+## Type Definitions
+
+The following type definitions provide a structure for the data stored in the tables.
+
+### Firebase Integration
+This system is based on Firebase and Next.js. Each table corresponds to a Firestore collection. Data can be manipulated using Firebase Firestore's API.
