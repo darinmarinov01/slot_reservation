@@ -1,0 +1,5 @@
+export {default as useAuthStore} from './auth/auth'
+export {default as useUserStore} from './user/user'
+export {default as useFavorities} from './favorities/favorities'
+export {default as useSlots} from './slots/slots'
+export {default as useErrorStore} from './error/error'
