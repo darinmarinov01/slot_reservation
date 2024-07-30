@@ -6,12 +6,12 @@ import { getFirestore } from "firebase/firestore"
 
 // Load .env variables
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  apiKey:  "AIzaSyBAI-87XyibdZseoJ6A82ITPOKwCPFYKvg",
+  authDomain: "parking-system-65efd.firebaseapp.com",
   projectId: 'parking-system-65efd',
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  storageBucket: "parking-system-65efd.appspot.com",
+  messagingSenderId: "362463237115",
+  appId: "1:362463237115:web:2318fbeb1489d76c2c315e",
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 }
 
