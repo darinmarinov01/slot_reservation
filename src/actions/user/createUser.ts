@@ -15,7 +15,7 @@ type ApiError = {
 export const createUser = async (data: User): Promise<User | ApiError> => {
     try {
         // Check if the user already exists
-        const existingUserRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/getUser`, {
+        const existingUserRes = await fetch(`https://slot-reservation.vercel.app/api/user/getUser`, {
             body: JSON.stringify({ email: data.email }),
             headers: headers,
             method: 'POST',
